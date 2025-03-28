@@ -61,7 +61,7 @@ local function center_text(text, author, window_width, window_height, word_width
 	end
 
 	table.insert(vertically_centered_lines, "")
-	table.insert(vertically_centered_lines, left_pad("- " .. author, largest_width))
+	table.insert(vertically_centered_lines, left_pad("- " .. author, (window_width - largest_width) / 2))
 
 	for _ = 1, num_new_lines - 2 do
 		table.insert(vertically_centered_lines, "")
