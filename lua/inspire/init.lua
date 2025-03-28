@@ -8,7 +8,6 @@ local inspire = { options = nil }
 
 function inspire.setup(options)
 	inspire.options = config.with_defaults(options)
-	vim.cmd("nnoremap <Plug>(ShowQuote) :lua require('inspire').show_quote()<CR>")
 end
 
 function inspire.show_quote(window)

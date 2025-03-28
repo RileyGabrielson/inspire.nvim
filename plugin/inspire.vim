@@ -1,10 +1,5 @@
 if exists('g:loaded_inspire') | finish | endif
 
-" expose vim commands and interface here
-" nnoremap <Plug>PlugCommand :lua require(...).plug_command()<CR>
-
-nnoremap <Plug>(ShowQuote) :lua require('inspire').show_quote()<CR>
-
 let s:save_cpo = &cpo
 set cpo&vim
 

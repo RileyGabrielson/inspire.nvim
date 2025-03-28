@@ -26,31 +26,44 @@ local function wrap_text(text, width)
 	return lines
 end
 
-local function center_text(text, window_width, window_height, word_width)
+local function left_pad(line_text, num_spaces)
+	local new_text = ""
+
+	for _ = 1, num_spaces do
+		new_text = new_text .. " "
+	end
+
+	new_text = new_text .. line_text
+	return new_text
+end
+
+local function center_text(text, author, window_width, window_height, word_width)
 	local lines = wrap_text(text, word_width)
 	local horizontally_centered_lines = {}
+	local largest_width = 0
 
 	for _, line_text in pairs(lines) do
 		local num_spaces = (window_width - string.len(line_text)) / 2
-		local new_text = ""
-
-		for _ = 1, num_spaces do
-			new_text = new_text .. " "
-		end
-
-		new_text = new_text .. line_text
+		largest_width = math.max(num_spaces, largest_width)
+		local new_text = left_pad(line_text, num_spaces)
 		table.insert(horizontally_centered_lines, new_text)
 	end
 
 	local vertically_centered_lines = {}
+
 	local num_new_lines = (window_height - #horizontally_centered_lines) / 2
 	for _ = 1, num_new_lines do
 		table.insert(vertically_centered_lines, "")
 	end
+
 	for _, line in pairs(horizontally_centered_lines) do
 		table.insert(vertically_centered_lines, line)
 	end
-	for _ = 1, num_new_lines do
+
+	table.insert(vertically_centered_lines, "")
+	table.insert(vertically_centered_lines, left_pad("- " .. author, largest_width))
+
+	for _ = 1, num_new_lines - 2 do
 		table.insert(vertically_centered_lines, "")
 	end
 
@@ -67,7 +80,13 @@ function main.show_quote(config, window)
 	local text_width = window_width / 2
 	local window_height = vim.api.nvim_win_get_height(window)
 
-	vim.api.nvim_buf_set_lines(buffer, 0, 0, false, center_text(quote.text, window_width, window_height, text_width))
+	vim.api.nvim_buf_set_lines(
+		buffer,
+		0,
+		0,
+		false,
+		center_text(quote.text, quote.author, window_width, window_height, text_width)
+	)
 
 	vim.api.nvim_set_option_value("readonly", true, { buf = buffer })
 	vim.api.nvim_set_option_value("modified", false, { buf = buffer })
