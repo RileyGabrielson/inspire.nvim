@@ -67,7 +67,7 @@ function main.show_quote(config, window)
 	local text_width = window_width / 2
 	local window_height = vim.api.nvim_win_get_height(window)
 
-	vim.api.nvim_buf_set_lines(buffer, 0, 0, false, center_text(quote, window_width, window_height, text_width))
+	vim.api.nvim_buf_set_lines(buffer, 0, 0, false, center_text(quote.text, window_width, window_height, text_width))
 
 	vim.api.nvim_set_option_value("readonly", true, { buf = buffer })
 	vim.api.nvim_set_option_value("modified", false, { buf = buffer })
@@ -75,4 +75,3 @@ function main.show_quote(config, window)
 end
 
 return main
-
