@@ -51,7 +51,8 @@ local function center_text(text, author, window_width, window_height, word_width
 
 	local vertically_centered_lines = {}
 
-	local num_new_lines = (window_height - #horizontally_centered_lines) / 2
+	local num_new_lines = ((window_height - #horizontally_centered_lines) / 2) - 1
+
 	for _ = 1, num_new_lines do
 		table.insert(vertically_centered_lines, "")
 	end
@@ -66,7 +67,7 @@ local function center_text(text, author, window_width, window_height, word_width
 		left_pad("- " .. author .. " -", (window_width - (string.len(author) + 4)) / 2)
 	)
 
-	for _ = 1, num_new_lines - 2 do
+	for _ = 1, num_new_lines do
 		table.insert(vertically_centered_lines, "")
 	end
 
