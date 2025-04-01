@@ -85,7 +85,7 @@ function main.show_quote(config, window)
 	if config.mode == "random" then
 		index = math.ceil(math.random() * #config.quotes)
 	end
-	print(string(index))
+	print(index)
 
 	local quote = config.quotes[index]
 
