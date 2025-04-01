@@ -11,6 +11,12 @@ local function split_text(text, sep)
 	return t
 end
 
+local function get_days()
+	local seconds = vim.uv.clock_gettime("realtime").sec
+	local day = math.ceil(seconds / (60 * 60 * 24))
+	return day
+end
+
 local function wrap_text(text, width)
 	local words = split_text(text)
 	local lines = { "" }
@@ -75,7 +81,13 @@ local function center_text(text, author, window_width, window_height, word_width
 end
 
 function main.show_quote(config, window)
-	local quote = config.quotes[math.ceil(math.random() * #config.quotes)]
+	local index = (get_days() % #config.quotes) + 1
+	if config.mode == "random" then
+		index = math.ceil(math.random() * #config.quotes)
+	end
+	print(string(index))
+
+	local quote = config.quotes[index]
 
 	window = window or vim.api.nvim_get_current_win()
 	local buffer = vim.api.nvim_create_buf(false, true)
