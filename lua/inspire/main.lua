@@ -80,14 +80,18 @@ local function center_text(text, author, window_width, window_height, word_width
 	return vertically_centered_lines
 end
 
-function main.show_quote(config, window)
+function main.get_quote(config)
 	local index = (get_days() % #config.quotes) + 1
 	if config.mode == "random" then
 		index = math.ceil(math.random() * #config.quotes)
 	end
-	print(index)
 
 	local quote = config.quotes[index]
+	return quote
+end
+
+function main.show_quote(config, window)
+	local quote = main.get_quote(config)
 
 	window = window or vim.api.nvim_get_current_win()
 	local buffer = vim.api.nvim_create_buf(false, true)

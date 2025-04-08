@@ -1,6 +1,3 @@
---[[ this module exposes the interface of lua functions:
-define here the lua functions that activate the plugin ]]
-
 local main = require("inspire.main")
 local config = require("inspire.config")
 
@@ -12,6 +9,10 @@ end
 
 function inspire.show_quote(window)
 	main.show_quote(inspire.options, window)
+end
+
+function inspire.get_quote()
+	return main.get_quote(inspire.options)
 end
 
 return inspire
