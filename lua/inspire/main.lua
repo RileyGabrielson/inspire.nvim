@@ -87,6 +87,7 @@ function main.get_quote(config)
 	end
 
 	local quote = config.quotes[index]
+
 	return quote
 end
 

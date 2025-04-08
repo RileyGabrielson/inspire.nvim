@@ -15,4 +15,8 @@ function inspire.get_quote()
 	return main.get_quote(inspire.options)
 end
 
+function inspire.center_text(text, author, window_width, window_height, word_width)
+	return main.center_text(text, author, window_width, window_height, word_width)
+end
+
 return inspire
