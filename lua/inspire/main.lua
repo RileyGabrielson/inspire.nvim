@@ -43,7 +43,7 @@ local function left_pad(line_text, num_spaces)
 	return new_text
 end
 
-local function center_text(text, author, window_width, window_height, word_width)
+function main.center_text(text, author, window_width, window_height, word_width)
 	local lines = wrap_text(text, word_width)
 	local horizontally_centered_lines = {}
 	local largest_width = 0
@@ -106,7 +106,7 @@ function main.show_quote(config, window)
 		0,
 		0,
 		false,
-		center_text(quote.text, quote.author, window_width, window_height, text_width)
+		main.center_text(quote.text, quote.author, window_width, window_height, text_width)
 	)
 
 	vim.api.nvim_set_option_value("readonly", true, { buf = buffer })
