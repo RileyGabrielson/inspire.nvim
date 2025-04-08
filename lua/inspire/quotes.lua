@@ -1,4 +1,6 @@
 return {
+  { author = "R. J. Palacio", text = "When given the choice between being right and being kind, choose kind." },
+  { author = "Frank Herbert", text = "I must not fear. Fear is the mind-killer. Fear is the little-death that brings total obliteration. I will face my fear. I will permit it to pass over me and through me. And when it has gone past I will turn the inner eye to see its path. Where the fear has gone there will be nothing. Only I will remain."},
 	{ author = "Lao Tzu", text = "An ant on the move does more than a dozing ox", },
 	{ author = "Aristotle", text = "If one way be better than another, that you may be sure is natures way.", },
 	{ author = "Brendan Francis", text = "No yesterdays are ever wasted for those who give themselves to today.", },
