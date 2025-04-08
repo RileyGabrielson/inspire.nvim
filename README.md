@@ -34,7 +34,7 @@ use {
   -- 'daily' or 'random'
   mode = "daily",
 
-  -- Array of custom quotes
+  -- Override the default quotes
   quotes = {
     { text = "My First Custom Quote", author = "Me" },
     { text = "My Second Custom Quote", author = "Myself" },
@@ -90,7 +90,9 @@ inspire.nvim is also compatible with any dashboard plugin. For example, to inclu
   end,
 }
 
+```
+
 ## Credits
 
-Majority of quotes are taken from [dwyl quotes](https://github.com/dwyl/quotes)
-```
+- [dwyl quotes](https://github.com/dwyl/quotes)
+- [alpha-nvim](https://github.com/goolord/alpha-nvim)
