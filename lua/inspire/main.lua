@@ -80,8 +80,27 @@ function main.center_text(text, author, window_width, window_height, word_width)
 	return vertically_centered_lines
 end
 
+local function get_deterministic_daily_index(total_count)
+	-- Use current day as seed for the random generator.
+	local day_number = get_days()
+	-- Create a new seed for each cycle through all quotes
+	local cycle_number = math.floor(day_number / total_count)
+	local seed = day_number + (cycle_number * 10000)
+
+	-- Create deterministic pseudo-random sequence for this day
+	math.randomseed(seed)
+
+	-- Get a deterministic "random" index between 1 and total_count
+	local index = math.random(1, total_count)
+
+	-- Restore random seed
+	math.randomseed(os.time())
+
+	return index
+end
+
 function main.get_quote(config)
-	local index = (get_days() % #config.quotes) + 1
+	local index = get_deterministic_daily_index(#config.quotes)
 	if config.mode == "random" then
 		index = math.ceil(math.random() * #config.quotes)
 	end
